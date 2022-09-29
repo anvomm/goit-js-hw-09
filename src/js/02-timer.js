@@ -51,7 +51,7 @@ const options = {
   },
 };
 
-flatpickr('input[type="text"]', options);
+flatpickr('#datetime-picker', options);
 
 function onStartBtnClick() {
   timerId = setInterval(timer, 1000);
