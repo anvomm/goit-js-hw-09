@@ -17,6 +17,10 @@ function onInputDataSave(evt) {
 
 function onSubmitEvent(evt) {
   evt.preventDefault();
+  if (formData.delay < 0 || formData.step < 0 || formData.amount < 0) {
+    Notify.warning('Please enter a positive number(s)! The smallest possible number is 0.');
+    return;
+  };
   let position = 1;
   let delay = Number(formData.delay);
   for (let i = 1; i <= formData.amount; i++) {
