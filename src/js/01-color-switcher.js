@@ -9,6 +9,7 @@ refs.startBtn.addEventListener('click', onStartBtnClickColorChange);
 refs.stopBtn.addEventListener('click', onStopBtnClickColorChangeStop);
 
 function onStartBtnClickColorChange() {
+    document.body.style.backgroundColor = getRandomHexColor();
     colorChangeId = setInterval(() => document.body.style.backgroundColor = getRandomHexColor(), 1000);
     refs.startBtn.disabled = true;
     refs.stopBtn.disabled = false;
