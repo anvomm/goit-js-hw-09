@@ -40,7 +40,7 @@ function multiplePromiseCreate({delay, amount, step}) {
       .then(({ position,delayIncrease }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delayIncrease}ms`);
       })
-      .catch(({ position, delay }) => {
+      .catch(({ position, delayIncrease }) => {
         Notify.failure(`❌ Rejected promise ${position} in ${delayIncrease}ms`);
       });
     position += 1;
