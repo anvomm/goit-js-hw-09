@@ -17,7 +17,19 @@ function onInputDataSave(evt) {
 
 function onSubmitEvent(evt) {
   evt.preventDefault();
-  multiplePromiseCreate(formData);
+  let position = 1;
+  let delay = Number(formData.delay);
+  for (let i = 1; i <= formData.amount; i++) {
+    createPromise(position, delay)
+      .then(({ position,delay}) => {
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      })
+      .catch(({ position, delay }) => {
+        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      });
+    position += 1;
+    delay += Number(formData.step);
+  };
 };
 
 function createPromise(position, delay) {
@@ -31,19 +43,3 @@ function createPromise(position, delay) {
     }, delay);
   });
 };
-
-function multiplePromiseCreate({delay, amount, step}) {
-  let position = 1;
-  let delayIncrease = Number(delay);
-  for (let i = 1; i <= amount; i++) {
-    createPromise(position, delayIncrease)
-      .then(({ position,delayIncrease }) => {
-        Notify.success(`✅ Fulfilled promise ${position} in ${delayIncrease}ms`);
-      })
-      .catch(({ position, delayIncrease }) => {
-        Notify.failure(`❌ Rejected promise ${position} in ${delayIncrease}ms`);
-      });
-    position += 1;
-    delayIncrease += Number(step);
-  };
-}
